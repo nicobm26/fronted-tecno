@@ -1,6 +1,6 @@
 <template>
     <div class="login-container">
-        <i class="fas fa-university fa-4x mb-20px color-icon"></i>
+        <img src="../assets/logo-tecnostore.jpg" class="logo" alt="Logo tecnostore">
         <div class="mb-20px">
             <div class="p-float-label">
                 <InputText class="w-100" id="username" type="text" v-model="username"/>
@@ -86,5 +86,9 @@ export default {
 }
 </script>
 <style>
-
+.logo{
+    width: 40%;
+    height: auto;
+    margin-bottom: 2em;
+}
 </style>

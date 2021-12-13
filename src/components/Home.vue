@@ -1,17 +1,23 @@
 <template>
-    <div>holaaa </div>
-    <select v-model="tipo"  name="tipo_product">
-        <option value="phone13">Phone 13</option>
-        <option value="phone12">Phone 12</option>
-        <option value="phone11">Phone 11</option>
-    </select>
-    <input type="text"  v-model="ciudad" placeholder="ciudad">
-    <input type="number" v-model="cantidad" placeholder="cantidad">
-    <input type="number"  v-model="precio"  placeholder="precio">
-    <input type="text"  v-model="celular"  placeholder="celular">
-    <input type="text"  v-model="descripcion"  placeholder="descripcion">
-    <input type="date"  v-model="fecha"  placeholder="fecha">
-    <button v-on:click="crearPedido">Crear pedido </button>
+<div class="container"> 
+        <h2>Crear pedido</h2>
+            <div class="container-input">
+        <select v-model="tipo"  name="tipo_product">
+            <option value="phone13">Phone 13</option>
+            <option value="phone12">Phone 12</option>
+            <option value="phone11">Phone 11</option>
+        </select>
+        <input type="text"  v-model="ciudad" placeholder="ciudad">
+        <input type="number" v-model="cantidad" placeholder="cantidad">
+        <input type="number"  v-model="precio"  placeholder="precio">
+        <input type="text"  v-model="celular"  placeholder="celular">
+        <input type="text"  v-model="descripcion"  placeholder="descripcion">
+        <!--<input type="date"  v-model="fecha"  placeholder="fecha">-->
+        <button v-on:click="crearPedido">Crear pedido </button>
+        <button v-on:click="logOut">Cerrar sesion </button>
+        
+        </div>
+    </div>
 </template>
 <script>
 // import MainLayout from '@/layout/MainLayout.vue'
@@ -40,7 +46,7 @@ export default {
     },
     methods: {
         crearPedido: function(){
-            alert(`fecha: ${this.fecha} ${this.username}`);
+            alert(`fecha: ${this.fecha} usuario ${this.username}  tipo ${this.tipoProducto}`);
              this.$apollo.mutate({
                 mutation: gql`
                     mutation createOrder($product: OrderInput!){
@@ -50,7 +56,7 @@ export default {
                 }`,
                 variables: {
                         product: {
-                            tipoProducto : this.tipo,
+                            tipoProducto : this.tipoProducto,
                             ciudad: this.ciudad,
                             cantidad: this.cantidad,
                             precio : this.precio,
@@ -65,7 +71,7 @@ export default {
                     alert("felicidades, has realizado tu pedido con exito")
                     console.log(response)
                 }).catch((e) => {
-                alert('se presento un error   linea 76');
+                alert('se presento un error   linea 86');
                 console.log(e)
                 });
         },
@@ -79,13 +85,27 @@ export default {
 scoped: Van a ser estilos que solamente aplican a este componnete
 -->
 <style scoped>
-.user-info {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 5px;
-}
-
-.tabla-transacciones {
+.container {
     width: 100%;
+    height: 100vh;
+    position: relative;
+    margin: 2em auto;
+}
+.container h2{
+    text-align: center;
+
+}
+.container .container-input{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    width: 50%;
+    position: relative;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid gray;
+}
+.container .container-input input{
+    height: 3em;
 }
 </style>
