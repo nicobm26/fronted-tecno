@@ -1,4 +1,6 @@
 <template>
+<div class="contenedor-registro"> 
+    <h2>Registro de usuario</h2>
     <div class="mb-20px">
         <div class="p-float-label">
             <InputText class="w-100" id="username" type="text" v-model="username"/>
@@ -35,17 +37,19 @@
             <label for="password2">Confirmar Contraseña</label>
         </div>
     </div>
-    <div class="mb-20px">
-        <Button label="Registrarme"
-                @click="registrarme" 
-                icon="pi pi-sign-in"/>
+    <div class="contenedor-de-botones">
+        <div class="mb-20px">
+            <Button label="Registrarme"
+                    @click="registrarme" 
+                    icon="pi pi-sign-in"/>
+        </div>
+        <div>
+            <Button label="Ya estoy registrado"
+                    @click="regresar"
+                    class="p-button-link" />
+        </div>
     </div>
-    <div>
-        <Button label="Ya estoy registrado"
-                @click="regresar"
-                class="p-button-link" />
-    </div>
-        
+</div>  
 </template>
 
 <script>
@@ -114,5 +118,18 @@ export default {
 }
 </script>
 <style scoped>
-
+.contenedor-registro{
+    width:70% ; 
+    height: 70%;
+    position: relative;
+    margin: 2.3em auto;
+}
+h2{
+    text-align: center;
+}
+.contenedor-de-botones{
+    display:flex;
+    justify-content:center;
+    /* flex-direction: column; */
+}
 </style>
