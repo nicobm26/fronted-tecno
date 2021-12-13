@@ -2,7 +2,7 @@
 <div class="container"> 
         <h2>Crear pedido</h2>
             <div class="container-input">
-        <select v-model="tipo"  name="tipo_product">
+        <select v-model="tipoProducto"  name="tipo_product">
             <option value="phone13">Phone 13</option>
             <option value="phone12">Phone 12</option>
             <option value="phone11">Phone 11</option>
@@ -13,8 +13,8 @@
         <input type="text"  v-model="celular"  placeholder="celular">
         <input type="text"  v-model="descripcion"  placeholder="descripcion">
         <!--<input type="date"  v-model="fecha"  placeholder="fecha">-->
-        <button v-on:click="crearPedido">Crear pedido </button>
-        <button v-on:click="logOut">Cerrar sesion </button>
+        <button class="crear boton" v-on:click="crearPedido">Crear pedido </button>
+        <button class="cerrar boton" v-on:click="logOut">Cerrar sesion </button>
         
         </div>
     </div>
@@ -49,7 +49,7 @@ export default {
             alert(`fecha: ${this.fecha} usuario ${this.username}  tipo ${this.tipoProducto}`);
              this.$apollo.mutate({
                 mutation: gql`
-                    mutation createOrder($product: OrderInput!){
+                    mutation crearPedido($product: OrderInput!){
                         createOrder(product: $product){
                             numeroOrden
                     }
@@ -85,14 +85,18 @@ export default {
 scoped: Van a ser estilos que solamente aplican a este componnete
 -->
 <style scoped>
+body{
+    background: rgb(13, 38, 120, 0.2);
+}
 .container {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     position: relative;
     margin: 2em auto;
 }
 .container h2{
     text-align: center;
+    padding: 1em;
 
 }
 .container .container-input{
@@ -107,5 +111,17 @@ scoped: Van a ser estilos que solamente aplican a este componnete
 }
 .container .container-input input{
     height: 3em;
+}
+.boton{
+    display: block;
+    height: 40px;
+    color:white;
+}
+.crear{
+    background: rgb(13, 38, 120);
+}
+.cerrar{
+    background: rgba(202, 200, 200, 0.979);
+    color: black;
 }
 </style>
